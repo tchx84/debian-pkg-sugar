@@ -106,6 +106,7 @@ recommends-jarabe = python-carquinyol-$(pkgbranch)
 recommends-jarabe +=, dbus-x11, network-manager, modemmanager, gconf2
 recommends-jarabe +=, avahi-autoipd, openssh-client, xdg-user-dirs
 recommends-jarabe +=, consolekit | systemd
+recommends-jarabe +=, gst-plugins-espeak, policykit-1
 suggests-session = gdb, olpc-powerd
 suggests-toolkit = git, ipython
 suggests-session-weak = gir1.2-maliit-1.0, maliit-keyboard
