@@ -1,3 +1,9 @@
+sugar-0.104 (0.105.1-1~tch3) trusty; urgency=medium
+
+  * fix gobject-instrospection dep
+
+ -- Martin Abente Lahaye <tch@tch>  Tue, 26 May 2015 09:12:00 -0400
+
 sugar-0.104 (0.105.1-1~tch2) trusty; urgency=medium
 
   * add missing deps
