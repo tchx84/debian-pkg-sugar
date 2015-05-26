@@ -71,6 +71,7 @@ Package: python-jarabe-0.104
 Section: python
 Architecture: all
 Depends: ${cdbs:Depends},
+ gobject-introspection (>= 1.42.0-2.2),
  ${misc:Depends},
  ${python:Depends},
  ${shlibs:Depends}
