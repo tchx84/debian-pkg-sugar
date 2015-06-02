@@ -1,3 +1,9 @@
+sugar-0.104 (0.105.2-1~tch2) trusty; urgency=medium
+
+  * Add dependency on unity-greeter-badges.
+
+ -- Martin Abente Lahaye <tch@sugarlabs.org>  Tue, 02 Jun 2015 15:13:33 -0400
+
 sugar-0.104 (0.105.2-1~tch1) trusty; urgency=medium
 
   * upstream 0.105.2
