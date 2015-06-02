@@ -101,6 +101,7 @@ depends-jarabe +=, metacity
 recommends-session = lsb-release, network-manager, modemmanager, ethtool
 recommends-session +=, upower, gvfs, tzdata, fonts-dejavu-core, dbus-x11
 recommends-session +=, mobile-broadband-provider-info
+recommends-session +=, unity-greeter-badges
 recommends-session +=, $(call session_expand_activities,true)
 recommends-jarabe = python-carquinyol-$(pkgbranch)
 recommends-jarabe +=, dbus-x11, network-manager, modemmanager, gconf2
