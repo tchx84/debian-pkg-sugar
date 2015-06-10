@@ -1,0 +1,19 @@
+diff --git a/data/org.sugarlabs.gschema.xml b/data/org.sugarlabs.gschema.xml
+index d04523c..ab5288e 100644
+--- a/data/org.sugarlabs.gschema.xml
++++ b/data/org.sugarlabs.gschema.xml
+@@ -288,12 +288,12 @@
+     </schema>
+     <schema id="org.sugarlabs.update" path="/org/sugarlabs/update/">
+         <key name="backend" type="s">
+-            <default>'aslo.AsloUpdater'</default>
++            <default>'microformat.MicroformatUpdater'</default>
+             <summary>Activity update backend.</summary>
+             <description>Activity update backend module, followed by a period, followed by the class name.</description>
+         </key>
+         <key name="microformat-update-url" type="s">
+-            <default>''</default>
++            <default>'http://dev.laptop.org/pub/us/activities/trusty/list.html'</default>
+             <summary>Microformat update URL.</summary>
+             <description>URL used by the microformat update backend for activity update information.</description>
+         </key>
