@@ -1,3 +1,9 @@
+sugar-0.104 (0.105.2-1~tch3) trusty; urgency=medium
+
+  * Set default updater back-end and url.
+
+ -- Martin Abente Lahaye <tch@sugarlabs.org>  Wed, 10 Jun 2015 09:00:00 -0400
+
 sugar-0.104 (0.105.2-1~tch2) trusty; urgency=medium
 
   * Add dependency on unity-greeter-badges.
