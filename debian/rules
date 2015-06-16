@@ -35,6 +35,23 @@ include /usr/share/cdbs/1/rules/debhelper.mk
 
 comma = ,
 
+# Adapt packaging in maintainer mode when targeting experimental branch:
+#  * Switch git packaging branch
+#  * Track any release (else only current branch)
+ifneq (,$(DEB_MAINTAINER_MODE))
+experimental := $(strip $(if \
+	$(shell dpkg-parsechangelog \
+		| grep -x 'Distribution: \(experimental\|UNRELEASED\)'),\
+	yes))
+watch-limit = $(if $(experimental),,$(pkgbranch)\\.)
+debian-branch = $(if $(experimental),master,master-$(pkgbranch))
+clean::
+	perl -i -pe 's/\([\d.\\]*\.\*\)/($(watch-limit).*)/' \
+		debian/watch
+	perl -i -pe 's/^debian-branch *= *\K.*/$(debian-branch)/' \
+		debian/gbp.conf
+endif
+
 DEB_UPSTREAM_PACKAGE = $(DEB_SOURCE_PACKAGE:%-$(pkgbranch)=%)
 DEB_UPSTREAM_URL = http://download.sugarlabs.org/sources/sucrose/glucose/$(DEB_UPSTREAM_PACKAGE)
 DEB_UPSTREAM_TARBALL_EXTENSION = tar.xz
@@ -55,10 +72,10 @@ bdeps +=, python-empy
 sugar_expand_activities = $(foreach stem,$(1),$(comma) $(patsubst %,sugar-$(stem)-activity-%$(if $(3), | ),$(2))$(if $(if $(2),,true)$(3),sugar-$(stem)-activity))
 
 # Fructose activities
-session_expand_activities += $(call sugar_expand_activities,browse chat,,$(1))
+session_expand_activities += $(call sugar_expand_activities,browse chat log,,$(1))
 # Fructose activities not avilable in Debian main for this Sugar branch
 session_expand_activities_relaxed += $(call sugar_expand_activities,pippy turtleart calculate etoys,,$(1))
-session_expand_activities_relaxed += $(call sugar_expand_activities,log write,0.86,$(1))
+session_expand_activities_relaxed += $(call sugar_expand_activities,write,0.86,$(1))
 session_expand_activities_relaxed += $(call sugar_expand_activities,jukebox imageviewer,$(pkgbranch),$(1))
 
 # Needed (always/often/sometimes) at runtime
