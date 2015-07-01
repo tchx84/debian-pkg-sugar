@@ -1,3 +1,9 @@
+sugar-0.104 (0.105.3-1~tch1) trusty; urgency=medium
+
+  * upstream 0.105.3
+
+ -- Martin Abente Lahaye <tch@sugarlabs.org>  Wed, 01 Jul 2015 10:15:36 -0400
+
 sugar-0.104 (0.105.2-1~tch5) trusty; urgency=medium
 
   * Add adhoc-default-route NM dispatcher.
