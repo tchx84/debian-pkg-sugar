@@ -1,3 +1,9 @@
+sugar-0.104 (0.106.0-1~tch1) trusty; urgency=medium
+
+  * upstream 0.106.0
+
+ -- Martin Abente Lahaye <tch@sugarlabs.org>  Tue, 07 Jul 2015 09:57:12 -0400
+
 sugar-0.104 (0.105.3-1~tch1) trusty; urgency=medium
 
   * upstream 0.105.3
