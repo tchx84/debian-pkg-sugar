@@ -1,3 +1,9 @@
+sugar (0.106.0-3~0tch1) trusty; urgency=medium
+
+  * Solve conflicts with previous packages.
+
+ -- Martin Abente Lahaye <tch@sugarlabs.org>  Thu, 23 Jul 2015 11:58:37 -0400
+
 sugar (0.106.0-2) unstable; urgency=medium
 
   * Recommend/depend on (not suggest/recommend) Read activity: Available
