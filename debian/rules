@@ -185,6 +185,28 @@ CDBS_PROVIDES_$(pkg-jarabe) +=, notification-daemon
 CDBS_REPLACES_$(pkg-session) +=, sugar-tools
 CDBS_BREAKS_$(pkg-session) +=, sugar-tools
 
+# Replace previous package names to avoid conflicts
+older-sucrose = sucrose-0.96
+older-sucrose +=, sucrose-0.98
+older-sucrose +=, sucrose-0.104
+CDBS_PROVIDES_$(pkg-sucrose) +=, $(older-sucrose)
+CDBS_REPLACES_$(pkg-sucrose) +=, $(older-sucrose)
+CDBS_CONFLICTS_$(pkg-sucrose) +=, $(older-sucrose)
+
+older-session = sugar-session-0.96
+older-session +=, sugar-session-0.98
+older-session +=, sugar-session-0.104
+CDBS_PROVIDES_$(pkg-session) +=, $(older-session)
+CDBS_REPLACES_$(pkg-session) +=, $(older-session)
+CDBS_CONFLICTS_$(pkg-session) +=, $(older-session)
+
+older-jarabe = python-jarabe-0.96
+older-jarabe +=, python-jarabe-0.98
+older-jarabe +=, python-jarabe-0.104
+CDBS_PROVIDES_$(pkg-jarabe) +=, $(older-jarabe)
+CDBS_REPLACES_$(pkg-jarabe) +=, $(older-jarabe)
+CDBS_CONFLICTS_$(pkg-jarabe) +=, $(older-jarabe)
+
 DEB_PYTHON_PRIVATE_MODULES_DIRS = /usr/share/sugar
 
 # Register GConf schemas
