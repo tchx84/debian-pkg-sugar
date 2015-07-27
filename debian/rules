@@ -124,6 +124,7 @@ recommends-session = lsb-release, network-manager, modemmanager, ethtool
 recommends-session +=, upower, gvfs, tzdata, fonts-dejavu-core, dbus-x11
 recommends-session +=, mobile-broadband-provider-info
 recommends-session +=, $(pkg-fructose)
+recommends-session +=, unity-greeter-badges
 recommends-jarabe = python-carquinyol (>= $(pkgbranch))
 recommends-jarabe +=, dbus-x11, network-manager, modemmanager, gconf2
 recommends-jarabe +=, avahi-autoipd, openssh-client, xdg-user-dirs
