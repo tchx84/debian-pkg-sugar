@@ -2,3 +2,4 @@ debian/sugar.desktop			usr/share/xsessions/
 debian/tmp/etc/*			etc/
 debian/tmp/usr/bin/*			usr/bin/
 debian/tmp/usr/share/*			usr/share/
+debian/99-adhoc-default-route		etc/NetworkManager/dispatcher.d/

@@ -1,0 +1,6 @@
+#!/bin/bash
+[[ $(iwconfig ${1}) == *"802.11"* ]] || exit 0
+[[ "$2" = "up" ]] || exit 0
+[[ "${CONNECTION_ID:6:14}" = "Ad-hoc Network" ]] || exit 0
+[[ "${IP4_ADDRESS_0:0:7}" = "169.254" ]] || exit 0
+ip route add default via 169.254.1.1
