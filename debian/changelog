@@ -1,3 +1,9 @@
+sugar (0.106.0-3~0tch2) trusty; urgency=medium
+
+  * Add OLPC customized dependencies and patches.
+
+ -- Martin Abente Lahaye <tch@sugarlabs.org>  Mon, 27 Jul 2015 17:26:46 -0400
+
 sugar (0.106.0-3~0tch1) trusty; urgency=medium
 
   * Solve conflicts with previous packages.
