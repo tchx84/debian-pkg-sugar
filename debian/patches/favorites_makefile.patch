@@ -1,0 +1,13 @@
+diff --git a/data/Makefile.in b/data/Makefile.in
+index cd76e36..5d521dc 100644
+--- a/data/Makefile.in
++++ b/data/Makefile.in
+@@ -342,7 +342,7 @@ top_srcdir = @top_srcdir@
+ SUBDIRS = icons
+ sugardir = $(pkgdatadir)/data
+ sugar_DATA = \
+-	activities.defaults	\
++	activities.hidden	\
+ 	group-labels.defaults	\
+ 	ISO-639-2_utf-8.txt	\
+ 	kbdconfig		\
