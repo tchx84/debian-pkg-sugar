@@ -5,3 +5,4 @@ fix_shell_posix_and_quoting.patch
 set_default_gsettings.patch
 favorites.patch
 favorites_makefile.patch
+favorites_timeout.patch

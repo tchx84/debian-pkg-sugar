@@ -1,0 +1,57 @@
+From 2372b23099487b143e35960582522da144bdfd6b Mon Sep 17 00:00:00 2001
+From: Martin Abente Lahaye <tch@sugarlabs.org>
+Date: Wed, 24 Jun 2015 17:24:34 -0400
+Subject: [PATCH] Add bundle with delay
+
+As discussed in SL#4841, when installing activities via system
+packages there is no guarantee that diretory contents are available
+yet even if the GFileMonitor has detected the directory creation.
+
+Signed-off-by: Martin Abente Lahaye <tch@sugarlabs.org>
+---
+ src/jarabe/model/bundleregistry.py | 19 ++++++++++++++++++-
+ 1 file changed, 18 insertions(+), 1 deletion(-)
+
+diff --git a/src/jarabe/model/bundleregistry.py b/src/jarabe/model/bundleregistry.py
+index 61ef1a4..fabf0c6 100644
+--- a/src/jarabe/model/bundleregistry.py
++++ b/src/jarabe/model/bundleregistry.py
+@@ -71,6 +71,8 @@ class BundleRegistry(GObject.GObject):
+                            ([GObject.TYPE_PYOBJECT])),
+     }
+ 
++    _MAX_DELAY = 10000
++
+     def __init__(self):
+         logging.debug('STARTUP: Loading the bundle registry')
+         GObject.GObject.__init__(self)
+@@ -136,10 +138,25 @@ class BundleRegistry(GObject.GObject):
+     def __file_monitor_changed_cb(self, monitor, one_file, other_file,
+                                   event_type):
+         if event_type == Gio.FileMonitorEvent.CREATED:
+-            self.add_bundle(one_file.get_path(), set_favorite=True)
++            bundle_path = one_file.get_path()
++            # XXX ignore debian packages temporary directories
++            if bundle_path.endswith('.dpkg-new'):
++                return
++            # XXX SL4841 we can't guarantee the contents are all set yet
++            delay = 100
++            GLib.timeout_add(delay, self.__timeout_add_cb, bundle_path, delay)
+         elif event_type == Gio.FileMonitorEvent.DELETED:
+             self.remove_bundle(one_file.get_path())
+ 
++    def __timeout_add_cb(self, bundle_path, delay):
++        bundle = self.add_bundle(bundle_path, set_favorite=True)
++        if not bundle and delay < self._MAX_DELAY:
++            delay *= 10
++            GLib.timeout_add(delay, self.__timeout_add_cb, bundle_path, delay)
++        else:
++            logging.debug('stopping for %s after %d ms', bundle_path, delay)
++        return False
++
+     def _load_mime_defaults(self):
+         defaults = {}
+ 
+-- 
+2.1.0
+
