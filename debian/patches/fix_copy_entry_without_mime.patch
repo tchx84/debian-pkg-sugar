@@ -1,0 +1,41 @@
+From 78f826e139e2835e5131c1ce35432c03276ab560 Mon Sep 17 00:00:00 2001
+From: Martin Abente Lahaye <tch@sugarlabs.org>
+Date: Wed, 29 Jul 2015 10:11:53 -0400
+Subject: [PATCH] Fix Journal cannot copy entries without mime_type
+
+Some web activities do not write the "mime_type" entry
+in their metadata. This field is used when copying entries
+to external devices, while finding a proper extension.
+
+Therefore, make this particular piece of code a bit more
+robust against that missing field.
+
+Signed-off-by: Martin Abente Lahaye <tch@sugarlabs.org>
+---
+ src/jarabe/journal/model.py | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/src/jarabe/journal/model.py b/src/jarabe/journal/model.py
+index 74bada0..b78dbee 100644
+--- a/src/jarabe/journal/model.py
++++ b/src/jarabe/journal/model.py
+@@ -806,11 +806,11 @@ def _write_entry_on_external_device(metadata, file_path, ready_callback=None):
+         # only change the extension if the title don't have a good extension
+         clean_name, extension = os.path.splitext(file_name)
+         extension = extension.replace('.', '').lower()
+-        mime_extensions = mime.get_extensions_by_mimetype(
+-            metadata['mime_type'])
+-        if extension not in mime_extensions:
+-            file_name = get_file_name(metadata['title'],
+-                                      metadata['mime_type'])
++        mime_type = metadata.get('mime_type', None)
++        if mime_type is not None:
++            mime_extensions = mime.get_extensions_by_mimetype(mime_type)
++            if extension not in mime_extensions:
++                file_name = get_file_name(metadata['title'], mime_type)
+ 
+         destination_path = os.path.join(metadata['mountpoint'], file_name)
+         if destination_path != file_path:
+-- 
+2.1.0
+

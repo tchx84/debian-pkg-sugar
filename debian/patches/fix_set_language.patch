@@ -1,0 +1,25 @@
+From cd1bbe8209264ea82e0167d0ce633be52107fec2 Mon Sep 17 00:00:00 2001
+From: Gonzalo Odiard <godiard@gmail.com>
+Date: Wed, 1 Jul 2015 16:37:41 -0300
+Subject: [PATCH] Set default language when read .i18n file - Fixes #4868
+
+If the file is empty or corrupted, use the default language.
+---
+ extensions/cpsection/language/model.py | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/extensions/cpsection/language/model.py b/extensions/cpsection/language/model.py
+index c20d018..d3a4f65 100644
+--- a/extensions/cpsection/language/model.py
++++ b/extensions/cpsection/language/model.py
+@@ -110,6 +110,7 @@ def get_languages():
+     fd.close()
+ 
+     langlist = None
++    lang = _default_lang
+ 
+     for line in lines:
+         if line.startswith('LANGUAGE='):
+-- 
+2.1.0
+

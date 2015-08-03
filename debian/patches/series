@@ -6,3 +6,5 @@ set_default_gsettings.patch
 favorites.patch
 favorites_makefile.patch
 favorites_timeout.patch
+fix_set_language.patch
+fix_copy_entry_without_mime.patch
