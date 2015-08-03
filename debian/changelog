@@ -1,3 +1,9 @@
+sugar (0.106.0-3~0tch4) trusty; urgency=medium
+
+  * Add upstream fixes.
+
+ -- Martin Abente Lahaye <tch@sugarlabs.org>  Mon, 03 Aug 2015 10:58:21 -0400
+
 sugar (0.106.0-3~0tch3) trusty; urgency=medium
 
   * Customizations.
