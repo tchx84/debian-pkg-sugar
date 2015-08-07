@@ -1,0 +1,35 @@
+From 5b06cce1c3b42e7b94519f6be8ce37c24abb1ce6 Mon Sep 17 00:00:00 2001
+From: Martin Abente Lahaye <tch@sugarlabs.org>
+Date: Fri, 7 Aug 2015 14:36:57 -0400
+Subject: [PATCH] Fix palette when connection cannot properties are missing
+
+Signed-off-by: Martin Abente Lahaye <tch@sugarlabs.org>
+---
+ src/jarabe/model/filetransfer.py | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
+
+diff --git a/src/jarabe/model/filetransfer.py b/src/jarabe/model/filetransfer.py
+index 6303344..5cf914d 100644
+--- a/src/jarabe/model/filetransfer.py
++++ b/src/jarabe/model/filetransfer.py
+@@ -296,8 +296,15 @@ def file_transfer_available():
+     conn_watcher = connection_watcher.get_instance()
+     for connection in conn_watcher.get_connections():
+ 
+-        properties_iface = connection[dbus.PROPERTIES_IFACE]
+-        properties = properties_iface.GetAll(CONNECTION_INTERFACE_REQUESTS)
++        try:
++            properties_iface = connection[
++                dbus.PROPERTIES_IFACE]
++            properties = properties_iface.GetAll(
++                CONNECTION_INTERFACE_REQUESTS)
++        except:
++            logging.error('Could not get connection properties.')
++            continue
++
+         classes = properties['RequestableChannelClasses']
+         for prop, allowed_prop in classes:
+ 
+-- 
+2.1.0
+

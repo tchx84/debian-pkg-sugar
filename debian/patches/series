@@ -8,3 +8,4 @@ favorites_makefile.patch
 favorites_timeout.patch
 fix_set_language.patch
 fix_copy_entry_without_mime.patch
+fix_palette_when_no_connection.patch
