@@ -1,3 +1,9 @@
+sugar (0.106.0-3~0tch5) trusty; urgency=medium
+
+  * Fix journal palettes when missing connection properties.
+
+ -- Martin Abente Lahaye <tch@sugarlabs.org>  Fri, 07 Aug 2015 15:10:24 -0400
+
 sugar (0.106.0-3~0tch4) trusty; urgency=medium
 
   * Add upstream fixes.
